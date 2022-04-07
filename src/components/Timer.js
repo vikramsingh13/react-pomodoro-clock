@@ -1,50 +1,35 @@
 import React, { Component } from 'react';
 
 class Timer extends Component{
-	constructor(props){
-		super(props);
-		this.state = {
-			minutes: parseInt(this.props.minutes), 
-			seconds: parseInt(this.props.seconds),
-			start: this.props.start,
-		}
-	}
+	
 
 	componentDidMount(){
-		/*if(typeof this.state.seconds != 'number'){
-			this.setState({seconds: 0});
-		}*/
-
-		if(this.state.start){
+		if(this.props.start){
 			this.countdown();
 		}
 	}
 
-	//helper functions
-	newMinutes(e){
-		this.setState({minutes: parseInt(e.value)});
-	}
 
-	newSeconds(e){
-		this.setState({seconds: parseInt(e.value)});
-	}
+	//helper functions
 
 	countdown(){
 		setInterval(() => {
-
-			if(this.state.seconds === 0){
-				this.setState({minutes: this.state.minutes - 1, seconds: 59});
+			//when seconds reach 0, seconds is set to 59 and minutes is reduced by 1
+			if(this.props.seconds === 0){
+				this.setState({minutes: this.props.minutes - 1, seconds: 59});
 			} else {
-				this.setState({seconds: (this.state.seconds - 1)});
+				this.setState({seconds: (this.props.seconds - 1)});
 			}
 		}, 1000)
 	}
 
+
+	//render for Timer
 	render(){
 		return(
 			<div className="timer">
-				<input type="text" value={this.state.minutes} onChange={(e) => this.newMinutes(e)}/> : 
-				<input type="text" value={this.state.seconds} onChange={(e) => this.newSeconds(e)}/>
+				<input type="text" value={this.props.minutes} /> : 
+				<input type="text" value={this.props.seconds} />
 			</div>
 		)
 	}
@@ -52,6 +37,8 @@ class Timer extends Component{
 
 }
 
+
+//timer default props
 Timer.defaultProps = {
 	minutes: 25,
 	seconds: 0,
