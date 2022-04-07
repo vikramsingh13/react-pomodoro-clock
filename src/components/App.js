@@ -27,6 +27,7 @@ class App extends Component{
   //changes value for this.start
   pressedStart = () => {
     this.setState({start: true, edit: false});
+    console.log(this.state.start);
   }
 
   pressedPause = () => {
@@ -34,7 +35,7 @@ class App extends Component{
   }
 
   pressedEdit = () => {
-    this.setState({start: false, edit: true})
+    this.setState({start: false, edit: true});
   }
 
   pressedReset = () => {

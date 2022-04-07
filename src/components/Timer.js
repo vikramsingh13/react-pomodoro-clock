@@ -4,6 +4,7 @@ class Timer extends Component{
 	
 
 	componentDidMount(){
+		console.log("1");
 		if(this.props.start){
 			this.countdown();
 		}
