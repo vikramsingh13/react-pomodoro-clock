@@ -30,6 +30,7 @@ class App extends Component{
   //buttons for the timer
   pressedStart = async() => {
     if(!this.state.start){
+      await clearInterval(this.state.interval);
       this.setState({
         start: true, 
         edit: false,
@@ -56,14 +57,14 @@ class App extends Component{
     this.setState({interval: null})
   }
 
-  countdown = () => {
+  countdown = async() => {
     if(this.state.start){
       //when seconds reach 0, seconds is set to 59 and minutes is reduced by 1
       if(parseInt(this.state.seconds) === 0){
-        this.editMinutes(parseInt(this.state.minutes) - 1);
-        this.editSeconds(59);
+        await this.editMinutes(parseInt(this.state.minutes) - 1);
+        await this.editSeconds(59);
       } else {
-        this.editSeconds(parseInt(this.state.seconds) - 1);
+        await this.editSeconds(parseInt(this.state.seconds) - 1);
       }
     }
   }
