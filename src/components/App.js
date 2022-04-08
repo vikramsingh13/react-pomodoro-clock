@@ -13,9 +13,6 @@ class App extends Component{
     };
   }
 
-  componentDidMount(){
-  }
-
   //helper functions
   editMinutes = (newMinutes) => {
     newMinutes = newMinutes < 10 ? ("0" + newMinutes) : newMinutes;
