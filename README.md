@@ -1,7 +1,7 @@
-#Pomodoro Clock powered by ReactJS
+# Pomodoro Clock powered by ReactJS
 
-##To-do:
+## To-do:
 
-###Add sound notifs and settings
+### 1. Add sound notifs and settings
 
-###Polish with css
+### 2. Polish with css
