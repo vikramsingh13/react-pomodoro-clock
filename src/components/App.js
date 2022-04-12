@@ -5,8 +5,8 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      minutes: "01",
-      seconds: "15",
+      minutes: "25",
+      seconds: "00",
       start: false,
       edit: false,
       interval: setInterval(this.countdown, 1000)
@@ -14,44 +14,58 @@ class App extends Component{
   }
 
   //helper functions
-  editMinutes = (newMinutes) => {
-    newMinutes = newMinutes < 10 ? ("0" + newMinutes) : newMinutes;
-    this.setState({minutes: newMinutes});
+
+  //used to make sure the seconds and minutes are
+  //always displayed as 2 digits each
+  //returns string
+  displayDigits = time => {
+    return (parseInt(time) < 10 ? ("0" + time) : ("" + time));
   }
 
+  //editMinutes is sent to EditTimer component as props
+  editMinutes = (newMinutes) => {
+    this.setState({minutes: this.displayDigits(newMinutes)});
+  }
+
+  //editSeconds is sent to EditTimer component as props
   editSeconds = (newSeconds) => {
-    newSeconds = newSeconds < 10 ? ("0" + newSeconds) : newSeconds;
-    this.setState({seconds: newSeconds});
+    this.setState({seconds: this.displayDigits(newSeconds)});
+  }
+
+  //clears the interval timer and sets the this.interval to null
+  stopIntervalCounter = async() => {
+    await clearInterval(this.state.interval);
+    this.setState({interval: null});
   }
 
   //buttons for the timer
+
+  //pressedStart is send as a prop to EditTimer
+  //pressStart is used for onSubmit by EditTimer
   pressedStart = async() => {
     if(!this.state.start){
-      await clearInterval(this.state.interval);
+      await this.stopIntervalCounter();
       this.setState({
         start: true, 
         edit: false,
-        interval: await setInterval(this.countdown, 1000),
+        interval: setInterval(this.countdown, 1000),
       });
     }
   }
 
   pressedPause = async() => {
     this.setState({start: false});
-    await clearInterval(this.state.interval);
-    this.setState({interval: null});
+    await this.stopIntervalCounter();
   }
 
   pressedEdit = async() => {
     this.setState({start: false, edit: true});
-    await clearInterval(this.state.interval);
-    this.setState({interval: null});
+    await this.stopIntervalCounter();
   }
 
   pressedReset = async() => {
     this.setState({minutes: "25", seconds: "00", start: false, edit: false});
-    await clearInterval(this.state.interval);
-    this.setState({interval: null})
+    await this.stopIntervalCounter();
   }
 
   countdown = async() => {
@@ -79,17 +93,20 @@ class App extends Component{
         </div>
 
         <EditTimer
-        edit={this.state.edit} 
+        minutes={this.state.minutes}
+        seconds={this.state.seconds}
+        edit={this.state.edit}
+        onTimerSubmit={this.pressedStart} 
         editMinutes={this.editMinutes}
         editSeconds={this.editSeconds}
 
         />
 
         <div className="settings">
-          <p onClick={this.pressedStart}>Start</p>
-          <p onClick={this.pressedPause}>Pause</p>
-          <p onClick={this.pressedReset}>Reset</p>
-          <p onClick={this.pressedEdit}>Edit</p>
+          <button onClick={this.pressedStart}>Start</button>
+          <button onClick={this.pressedPause}>Pause</button>
+          <button onClick={this.pressedReset}>Reset</button>
+          <button onClick={this.pressedEdit}>Edit</button>
         </div>
 
       </div>
