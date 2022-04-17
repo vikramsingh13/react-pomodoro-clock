@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import EditTimer from './EditTimer';
+import './App.css';
 
 class App extends Component{
   constructor(props){
@@ -84,29 +85,31 @@ class App extends Component{
   render(){
     return(
       <div className="app">
-        <h1>React Pomodoro Clock</h1>
+        <div className="app-wrapper">
+          <div id="app-title">
+            <h1><span id="react-tag">React</span> Pomodoro Clock</h1>
+          </div>
 
-        <div className="timer">
-          <h2>{this.state.minutes} </h2> 
-          <h2>:</h2> 
-          <h2>{this.state.seconds} </h2>
-        </div>
+          <div className="timer">
+            <p>{this.state.minutes} : {this.state.seconds}</p>
+          </div>
 
-        <EditTimer
-        minutes={this.state.minutes}
-        seconds={this.state.seconds}
-        edit={this.state.edit}
-        onTimerSubmit={this.pressedStart} 
-        editMinutes={this.editMinutes}
-        editSeconds={this.editSeconds}
+          <EditTimer
+          minutes={this.state.minutes}
+          seconds={this.state.seconds}
+          edit={this.state.edit}
+          onTimerSubmit={this.pressedStart} 
+          editMinutes={this.editMinutes}
+          editSeconds={this.editSeconds}
 
-        />
+          />
 
-        <div className="settings">
-          <button onClick={this.pressedStart}>Start</button>
-          <button onClick={this.pressedPause}>Pause</button>
-          <button onClick={this.pressedReset}>Reset</button>
-          <button onClick={this.pressedEdit}>Edit</button>
+          <div className="settings">
+            <button id="start-button" onClick={this.pressedStart}>Start</button>
+            <button id="pause-button" onClick={this.pressedPause}>Pause</button>
+            <button id="reset-button" onClick={this.pressedReset}>Reset</button>
+            <button id="edit-button" onClick={this.pressedEdit}>Edit</button>
+          </div>
         </div>
 
       </div>

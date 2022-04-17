@@ -1,3 +1,7 @@
+.edit-timer{
+	
+}
+
 .edit{
 	display: block;
 }
@@ -5,3 +9,17 @@
 .no-edit{
 	display: none;
 }
+
+.edit-timer-form{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.edit-timer-form>div{
+	margin: 10px;
+	font-size: 24px;
+}
+
+

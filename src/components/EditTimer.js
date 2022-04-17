@@ -26,15 +26,19 @@ class EditTimer extends Component{
 				className="edit-timer-form" 
 				onKeyPress={this.onKeyPressed}
 				>
-					<label name="minutes">Minutes:</label>
-					<input type="text" 
-					value={this.props.minutes} 
-					onChange={e => this.props.editMinutes(e.target.value)}/>
+					<div className="edit-timer-form-minutes">
+						<label name="minutes">Minutes:</label>
+						<input type="text" 
+						value={this.props.minutes} 
+						onChange={e => this.props.editMinutes(e.target.value)}/>
+					</div>
 
-					<label name="seconds">Seconds:</label>
-					<input type="text" 
-					value={this.props.seconds} 
-					onChange={e => this.props.editSeconds(e.target.value)}/>
+					<div className="edit-timer-form-seconds">
+						<label name="seconds">Seconds:</label>
+						<input type="text" 
+						value={this.props.seconds} 
+						onChange={e => this.props.editSeconds(e.target.value)}/>
+					</div>
 				</form>
 			</div>
 		);
