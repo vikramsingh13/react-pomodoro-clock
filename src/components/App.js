@@ -71,8 +71,12 @@ class App extends Component{
 
   countdown = async() => {
     if(this.state.start){
+      if((parseInt(this.state.seconds) === 0 ) && (parseInt(this.state.minutes) === 0)){
+        this.setState({start: false});
+        await this.stopIntervalCounter();
+      }
       //when seconds reach 0, seconds is set to 59 and minutes is reduced by 1
-      if(parseInt(this.state.seconds) === 0){
+      else if(parseInt(this.state.seconds) === 0){
         await this.editMinutes(parseInt(this.state.minutes) - 1);
         await this.editSeconds(59);
       } else {
@@ -110,6 +114,10 @@ class App extends Component{
             <button id="reset-button" onClick={this.pressedReset}>Reset</button>
             <button id="edit-button" onClick={this.pressedEdit}>Edit</button>
           </div>
+
+          <footer className="footer">
+            <p><a href="https://vikramsingh.tech" target="_blank">VikramSingh</a> &copy; 2021-2022 </p>
+          </footer>
         </div>
 
       </div>
