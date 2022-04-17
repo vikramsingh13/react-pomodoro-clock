@@ -1,7 +1,3 @@
-# Pomodoro Clock powered by ReactJS
+# Pomodoro Clock with ReactJS
 
-## To-do:
-
-### 1. Add sound notifs and settings
-
-### 2. Polish with css
+## Check out: [Live Version](react-pomodoro-clock.vikramsingh.tech) 
