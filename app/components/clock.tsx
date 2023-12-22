@@ -32,7 +32,7 @@ const Clock: React.FC<ClockProps> = ({seconds, isRunning, toggleReset, isReset})
   }
 
   return (
-    <div>{ formatTime(time) }</div>
+    <div className="text-6xl">{ formatTime(time) }</div>
   )
 };
 
